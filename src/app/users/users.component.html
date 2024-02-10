@@ -1,0 +1,76 @@
+<div>
+<app-navbar></app-navbar> 
+</div>
+<br><br><br><br>
+<div class="table-responsive header">
+  <table class="table table-striped table-md table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>User Id</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Current location</th>
+        <th>Prefered location</th>
+        <th>Country</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    @for(u of users; track u.id) 
+    {
+      <tr>
+        <td>{{ u.userId }}</td>
+        <td>{{ u.firstName }}</td>
+        @if(u.MiddleName != null){
+        <td>{{ u.MiddleName }}</td>
+        }@else{
+        <td>-</td>
+        }
+        <td>{{ u.lastName }}</td>
+        <td>{{ u.dob }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.gender }}</td>
+        <td>{{ u.currentLocation }}</td>
+        <td>{{ u.prefered_location }}</td>
+        <td>{{ u.country }}</td>
+        <td>{{ u.authorities[0].authority }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter" (click)="getId(u.userId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">
+        Delete Confirmation...
+      </h5>
+    </div>
+    <div class="modal-body">Are you sure to delete... ?</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="delUser(id)">
+        Yes
+      </button>
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+</div> 
